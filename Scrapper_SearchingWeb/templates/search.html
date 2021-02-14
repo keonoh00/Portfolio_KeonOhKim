@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<html>
+  <head>
+    <title>검색 결과: {{term}}</title>
+    <style>
+      section {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(4, 1fr);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+    <a href="/">홈으로 가던가 말던가 가고 싶으면 누르삼</a>
+    </h1>
+    <h3>{{term}} 을 검색했음 - {{length}} 개의 결과가 나왔삼</h3>
+    <section>
+      <h4>사건 번호임</h4>
+      <h4>판결 일자임</h4>
+      <h4>주 제 임</h4>
+      <h4>요 약 임</h4>
+      {% for x in index %}
+        <span>{{CaseID[x]}}</span>
+        <span>{{DecDate[x]}}</span>
+        <span>{{Topic[x]}}</span>
+        <span>{{Preview[x]}}</span>
+      {% endfor %}
+    </section>
+    </form>
+  </body>
+</html>
