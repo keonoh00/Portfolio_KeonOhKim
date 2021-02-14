@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Cormorant+Garamond"
+    />
+    <script type="text/javascript" src="js/index.js"></script>
+    <title>주가 계산기</title>
+  </head>
+  <body>
+    <h3>주가 계산기</h3>
+    <div class="prices">
+      <div class="price_container">
+        <h5 class="title">매수가</h5>
+        <input id="buying_price" class="price" type="text" placeholder="$" />
+      </div>
+      <div class="price_container">
+        <h5 class="title">매도가</h5>
+        <div id="selling_price" class="price"></div>
+      </div>
+      <div class="submit">
+        <div class="increment">
+          <a href="#" onclick="increment();">+0.1%</a>
+        </div>
+        <div class="decrement">
+          <a href="#" onclick="decrement();">-0.1%</a>
+        </div>
+      </div>
+      <div class="refresh">
+        <a href="#" onclick="refresh();">새로고침</a>
+      </div>
+    </div>
+    <div class="output_container">
+      <h5 class="title">수익률:</h5>
+      <h1 id="profit_rate">0%</h1>
+    </div>
+  </body>
+</html>
