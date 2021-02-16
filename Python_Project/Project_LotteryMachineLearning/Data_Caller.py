@@ -52,6 +52,7 @@ def getLottoWinInfo(minDrwNo, maxDrwNo):
     return lotto_dict
 
 
+# Function to call weather data
 def getWeather(year, mon, day):
     URL = f"https://www.weather.go.kr/weather/climate/past_cal.jsp?stn=108&yy={year}&mm={mon}&x=22&y=6&obs=1"
     web_page = requests.get(URL)
@@ -69,9 +70,12 @@ def getWeather(year, mon, day):
             else:
                 try:
                     temp = re.search("평균기온:(.+?)℃최고기온", current_string)
-                    rain = re.search("강수량:(.+?)", current_string)
-                    weather_temp.append(temp.group(1))
-                    weather_rain.append(rain.group(1))
+                    rain = re.search("강수량:(.*)", current_string)
+                    weather_temp.append(float(temp.group(1).strip()))
+                    try:
+                        weather_rain.append(float(rain.group(1).strip("mm")))
+                    except:
+                        weather_rain.append(0)
                 except:
                     pass
     index = weather_day.index(str(int(day)))
@@ -79,20 +83,24 @@ def getWeather(year, mon, day):
     return result
 
 
+# Operating from here
+
+# User Input Here
 min_round = 1
-max_round = 800
+max_round = 950
 
-print("Getting Lottery Information\n\n\n")
 
-DB = getLottoWinInfo(1, 800)
+####################################################################################################################################
+print("\n\n\nGetting Lottery Information\n\n\n")
+
+DB = getLottoWinInfo(min_round, max_round)
 temperature = []
 rain = []
-for y, m, d in zip(DB["Year"], DB["Month"], DB["Day"]):
-    print(f"Getting Information... {round(min_round/max_round*100, 2)}%  {min_round}/{max_round}")
+for y, m, d in tqdm(zip(DB["Year"], DB["Month"], DB["Day"]), total=max_round):
     min_round += 1
     weather = getWeather(y, m, d)
-    temperature.append(weather[0])
-    rain.append(weather[1])
+    temperature.append(float(weather[0]))
+    rain.append(float(weather[1]))
 DB["Temperature"] = temperature
 DB["RainAmout"] = rain
 

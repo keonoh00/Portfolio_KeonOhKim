@@ -37,11 +37,11 @@ import numpy as np
 error_dict = {}
 
 # Always check the file path before run
-current_path = "/Users/keonohkim/Desktop/Project_MLL/Data.csv"
+current_path = "/Users/keonohkim/Desktop/Github_Portfolio/Python_Project/Project_LotteryMachineLearning/Data.csv"
 
 data = pd.read_csv(current_path)
-
-factor = ["Round"]
+# Rain Amount Typo
+factor = ["Year", "Month", "Day", "Round", "Temperature", "RainAmout"]
 target = ["Num1", "Num2", "Num3", "Num4", "Num5", "Num6"]
 
 X = data[factor]
@@ -131,8 +131,13 @@ best_prediction = min(error_dict, key=error_dict.get)
 
 print("\n\n\nTherefore best prediction model is {}\n\n\n".format(best_prediction))
 
-interest = input("Input the Round: ")
-interest = np.array([interest]).reshape(1, 1)
+in_year = input("Input year: ")
+in_month = input("Input month: ")
+in_day = input("Input day: ")
+in_round = input("Input round: ")
+in_temp = input("Input temperature: ")
+in_rain = input("Input rain: ")
+interest = np.array([in_year, in_month, in_day, in_round, in_temp, in_rain]).reshape(1, -1)
 
 if best_prediction == 'Decistion Tree with max node = 2':
     result = Deci.predict(interest)

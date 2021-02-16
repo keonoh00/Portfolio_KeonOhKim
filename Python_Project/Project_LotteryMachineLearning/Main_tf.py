@@ -29,11 +29,11 @@ import numpy as np
 
 
 # Preparing data
-current_path = "/Users/keonohkim/Desktop/Project_MLL/Data.csv"
+current_path = "/Users/keonohkim/Desktop/Github_Portfolio/Python_Project/Project_LotteryMachineLearning/Data.csv"
 
 data = pd.read_csv(current_path)
 
-factor = ["Round"]
+factor = ["Year", "Month", "Day", "Round", "Temperature", "RainAmout"]
 target = ["Num1", "Num2", "Num3", "Num4", "Num5", "Num6"]
 
 factor_data = data[factor]
@@ -41,7 +41,8 @@ target_data = data[target]
 
 
 # Building a model
-In = tf.keras.layers.Input(shape=1)
+print("Model Building in Progress......")
+In = tf.keras.layers.Input(shape=6)
 H = tf.keras.layers.Dense(50, activation='swish')(In)
 H = tf.keras.layers.Dense(60, activation='swish')(H)
 H = tf.keras.layers.Dense(70, activation='swish')(H)
@@ -65,13 +66,17 @@ tf_model.compile(loss='mse')
 # Loss indicates the (prediction - actual)^2 which shows the error of the model so lower the better
 # verbose=0 does not return current operation no printing
 
-interest = input("Input the Round: ")
-interest = np.array([int(interest)])
 
-tf_model.fit(factor_data, target_data, epochs=1, verbose=0)
-tf_model.fit(factor_data, target_data, epochs=10000)
+in_year = input("\n\n\nInput year: ")
+in_month = input("\n\n\nInput month: ")
+in_day = input("\n\n\nInput day: ")
+in_round = input("\n\n\nInput round: ")
+in_temp = input("\n\n\nInput temperature: ")
+in_rain = input("\n\n\nInput rain: ")
+interest = np.array([int(in_year), int(in_month), int(in_day), int(in_round), float(in_temp), float(in_rain)]).reshape(1, 6)
+
+tf_model.fit(factor_data, target_data, epochs=1000)
 
 result = tf_model.predict(interest)
 
-print("The Prediction is following:\n{}\n{}\n{}\n{}\n{}\n{}".format(result[0, 0], result[0, 1], result[0, 2], result[0, 3], result[0, 4], result[0, 5]))
-
+print(f"The Prediction is following:\t{round(result[0, 0])}\t{round(result[0, 1])}\t{round(result[0, 2])}\t{round(result[0, 3])}\t{round(result[0, 4])}\t{round(result[0, 5])}")
