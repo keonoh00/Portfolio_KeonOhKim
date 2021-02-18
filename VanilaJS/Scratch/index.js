@@ -11,3 +11,20 @@ let B = A - 9;
 console.log(B);
 
 /* multi=line comment */
+
+
+// Data type Array
+// Use camelcase for javascript --> not wrong but most people uses camelcase
+const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+// Data type Object
+const keonohInfo = {
+    name: "Keon Oh Kim", 
+    age: 23, 
+    gender: "Male", 
+    nationality: "Korean"
+}
+
+// To call or modify object
+console.log(keonohInfo.name);
+keonohInfo.age = 10;
