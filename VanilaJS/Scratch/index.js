@@ -22,9 +22,47 @@ const keonohInfo = {
     name: "Keon Oh Kim", 
     age: 23, 
     gender: "Male", 
-    nationality: "Korean"
+    nationality: "Korean", 
+    favFood: [
+        {
+            name: "Something",
+            color: "someColor"
+        },
+        {
+            name: "something2", 
+            color: "someColor"
+        }
+    ]
 }
 
 // To call or modify object
 console.log(keonohInfo.name);
 keonohInfo.age = 10;
+
+// Creating a function
+// Backtick to create a string with variable inside
+function sayHello(name, age){
+    console.log(`Hello, ${name} you are ${age} years old`)
+    return `Hello, ${name} you are ${age} years old`
+}
+
+const greeting = sayHello("name", 23)
+
+console.log(greeting)
+
+const calculator = {
+    plus: function(a, b){
+        return a + b;
+    }
+}
+
+console.log(calculator.plus(4, 7))
+
+
+// Getting something from html file
+// Something that you select from the document will be an object in JS
+const title = document.getElementById("title");
+
+console.log(title)
+
+title.innerHTML = "Hi! from Javascript"
