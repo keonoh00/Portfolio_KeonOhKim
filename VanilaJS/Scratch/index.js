@@ -61,8 +61,37 @@ console.log(calculator.plus(4, 7))
 
 // Getting something from html file
 // Something that you select from the document will be an object in JS
-const title = document.getElementById("title");
+// const title = document.getElementById("title");
 
-console.log(title)
+// # stands for id and . stands for class
+const title = document.querySelector("#title");
 
-title.innerHTML = "Hi! from Javascript"
+console.log(title);
+
+// To change the text:
+// title.innerHTML = "Hi! from Javascript"
+
+const BASE_COLOR = "indigo";
+const NEW_COLOR = "black";
+
+function handleClick(){
+    const currentColor = title.style.color;
+    if (currentColor === BASE_COLOR) {
+        title.style.color = NEW_COLOR;
+    } else {
+        title.style.color = BASE_COLOR;
+    }
+}
+
+function init() {
+    // for addEventListener there are many events: "click", "resize", "mouseenter" ... Use MDN to find resources
+    window.addEventListener("click", handleClick);
+}
+
+init();
+
+// Conditional Statement: if & else
+// &&: and  /  ||: or
+
+// prompt function is old to use currently there are more better html functions
+// userInput = prompt("Asking something");
